@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider      = "prisma-client-js"
+    // Used only for lambdas
+    binaryTargets = ["native", "linux-arm64-openssl-1.0.x", "rhel-openssl-1.0.x", "rhel-openssl-3.0.x"]
+    output        = "../node_modules/.prisma/db"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator json {
+    provider     = "prisma-json-types-generator"
+    clientOutput = "../node_modules/.prisma/db"
+    // namespace = "PrismaJson"
+    // clientOutput = "<finds it automatically>"
+    // (./ -> relative to schema, or an importable path to require() it)
+    // useType = "MyType"
+    // In case you need to use a type, export it inside the namespace and we will add a index signature to it
+    // (e.g.  export namespace PrismaJson { export type MyType = {a: 1, b: 2} }; will generate namespace.MyType["TYPE HERE"])
+}
+
+model Todo {
+  id        String   @id @default(uuid())
+  title     String
+  done      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

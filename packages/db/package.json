@@ -1,0 +1,26 @@
+{
+  "name": "@erika/db",
+  "private": true,
+  "version": "0.1.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "db:generate": "yarn with-env prisma generate",
+    "db:push": "yarn with-env prisma db push --skip-generate",
+    "db:migrate": "yarn with-env prisma migrate dev",
+    "db:deploy": "yarn with-env prisma migrate deploy",
+    "dev": "yarn with-env prisma studio --port 5556",
+    "with-env": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "prisma-json-types-generator": "^3.0.4"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^7.2.1",
+    "prisma": "^5.11.0",
+    "typescript": "5.0.4"
+  }
+}

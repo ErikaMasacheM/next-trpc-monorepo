@@ -1,0 +1,18 @@
+# Dockerize all the resources needed for the application
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: erika
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - dots-postgres:/var/lib/postgresql/data
+
+volumes:
+  dots-postgres:
+  dots-postgres-backup:

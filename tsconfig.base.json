@@ -5,11 +5,13 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@acme/api": ["packages/api/src/index.ts"]
-    },
-    "esModuleInterop": true,
-    "skipLibCheck": true
+      "@acme/api": ["packages/api/src/index.ts"],
+      "@db/*": ["packages/db/src/*"]
+    }
   }
 }

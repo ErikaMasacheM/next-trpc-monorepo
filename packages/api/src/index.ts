@@ -1,9 +1,16 @@
 import { initTRPC } from "@trpc/server";
 import { z } from "zod"; // analizador de entrada
+import type { PrismaClient } from '@prisma/client';
+import { prisma } from '../../db';
 
 // Context (por ahora vacío; luego puedes agregar auth/db)
-export type Context = {};
-export const createContext = async (): Promise<Context> => ({});
+export type Context = {
+    prisma: PrismaClient;
+    // user?: { id: string } // si luego agregas auth
+};
+export const createContext = async (): Promise<Context> => ({
+    prisma,
+});
 
 const t = initTRPC.context<Context>().create();
 export const router = t.router;
